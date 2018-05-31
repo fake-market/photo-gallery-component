@@ -2,6 +2,7 @@ const express = require('express');
 const parser = require('body-parser');
 const helmet = require('helmet');
 const path = require('path');
+require('../db/config');
 
 const app = express();
 const PORT = 1990;
