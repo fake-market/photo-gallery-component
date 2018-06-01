@@ -2,6 +2,7 @@ const { imageModel } = require('../models/imageModel.js');
 
 const imageController = {
   get: (req, res) => {
+    console.log('GET request object')
     imageModel.get(req.query.product_id, (err, data) => {
       if (err) {
         console.log('GET imageController error,', err``);
@@ -11,7 +12,7 @@ const imageController = {
       res.send(data).status(200);
     })
   },
-  //post: () => {}
+  //post: () => {} 
 }
 
 module.exports = {
