@@ -1,0 +1,12 @@
+img {
+  border-style: solid;
+  border-width: 1px;
+}
+
+.gallery_image {
+  height: 76px;
+  width: 76px;
+  margin-left: auto;
+  margin-right: 5px;
+  display: inline-block;
+}
