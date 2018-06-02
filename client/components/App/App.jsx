@@ -2,7 +2,7 @@ import React from 'react';
 import ReactImageMagnify from 'react-image-magnify'
 import axios from 'axios';
 
-import GalleryImage from './GalleryImage.jsx';
+import GalleryImage from '../GalleryImage/GalleryImage.jsx';
 
 export default class App extends React.Component {
   constructor() {

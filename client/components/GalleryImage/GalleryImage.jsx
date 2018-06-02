@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from './GalleryImage.css';
+
 export default class GalleryImage extends React.Component {
   constructor(props) {
     super(props);
@@ -13,8 +15,7 @@ export default class GalleryImage extends React.Component {
 
   render() {
     return(
-      <img 
-        class="gallery_image"
+      <img className={ styles.image }
         src={this.state.image} 
         onMou
         onMouseOver={(e) => this.tempProfileImageOnHover(e)}
