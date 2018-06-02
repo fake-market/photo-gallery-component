@@ -8,9 +8,10 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      product_id: 1,
+      productId: 1,
       images: [],
-      profile_image: '',
+      profileImage: '',
+      tempProfileImage: null,
       startIndex: 0,
       endIndex: 5
     };
@@ -18,6 +19,8 @@ export default class App extends React.Component {
     this.handleClickPrev = this.handleClickPrev.bind(this);
     this.setProfileImage = this.setProfileImage.bind(this);
     this.changeProfileImage = this.changeProfileImage.bind(this);
+    this.tempProfileImageOffHover = this.tempProfileImageOffHover.bind(this);
+    this.tempProfileImageOnHover = this.tempProfileImageOnHover.bind(this);
   }
 
   componentDidMount() {
@@ -27,7 +30,7 @@ export default class App extends React.Component {
   fetchImages() {
     axios.get('/products/images', {
       params: {
-        product_id: this.state.product_id
+        productId: this.state.productId
       }
     })
     .then(res => {
@@ -43,17 +46,31 @@ export default class App extends React.Component {
     this.state.images.forEach(image => {
       if (image.is_primary === 1) {
         this.setState({
-          profile_image: image.s3_url
+          profileImage: image.s3_url
         })
       }
     })
   }
 
   changeProfileImage(e) {
-    console.log(e.target.src);
     this.setState({
-      profile_image: e.target.src
+      profileImage: e.target.src,
+      tempProfileImage: e.target.src
     });
+  }
+
+  tempProfileImageOnHover(e) {
+    this.setState({
+      tempProfileImage: this.state.profileImage,
+      profileImage: e.target.src
+    })
+  }
+
+  tempProfileImageOffHover(e) {
+    this.setState({
+      profileImage: this.state.tempProfileImage,
+      tempProfileImage: null
+    })
   }
 
   handleClickNext() {
@@ -94,12 +111,12 @@ export default class App extends React.Component {
       <div>
         <ReactImageMagnify {...{
           smallImage: {
-            src: this.state.profile_image,
+            src: this.state.profileImage,
             height: 500,
             width: 500
           },
           largeImage: {
-            src: this.state.profile_image,
+            src: this.state.profileImage,
             height: 1000,
             width: 1000
           },
@@ -110,7 +127,7 @@ export default class App extends React.Component {
           <a href="javascript:;" id="prev" onClick={() => this.handleClickPrev()}>&lt;</a>
           {this.state.images.map((image, index) => {
             if (index >= this.state.startIndex && index <= this.state.endIndex) {
-              return <GalleryImage index={index} s3_url={image.s3_url} changeProfileImage={this.changeProfileImage} />
+              return <GalleryImage index={index} url={image.s3_url} changeProfileImage={this.changeProfileImage} tempProfileImageOnHover={this.tempProfileImageOnHover} tempProfileImageOffHover={this.tempProfileImageOffHover} />
             }
           })}
           <a href="javascript:;" id="next" onClick={() => this.handleClickNext()}>&gt;</a>
