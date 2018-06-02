@@ -3,10 +3,29 @@ img {
   border-width: 1px;
 }
 
-.gallery_image {
+#profile_image {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+div #gallery {
+  margin-top: 20px;
+}
+
+a, .gallery_image {
   height: 76px;
   width: 76px;
   margin-left: auto;
   margin-right: 5px;
   display: inline-block;
+}
+
+a {
+  vertical-align: top;
+  height: 76px;
+  width: 10px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
 }

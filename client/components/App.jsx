@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactImageMagnify from 'react-image-magnify'
 import axios from 'axios';
 
 import GalleryImage from './GalleryImage.jsx';
@@ -55,11 +56,26 @@ export default class App extends React.Component {
   render() {
     return(
       <div>
-        <img id="profile_image" src={this.state.profile_image} height="500" width="500" />
-        <div>
+        <ReactImageMagnify {...{
+          smallImage: {
+            src: this.state.profile_image,
+            height: 500,
+            width: 500
+          },
+          largeImage: {
+            src: this.state.profile_image,
+            height: 1000,
+            width: 1000
+          },
+          isHintEnabled: true,
+          shouldHideHintAfterFirstActivation: false
+        }} />
+        <div id="gallery">
+          <a href="#" id="prev">&lt;</a>
           {this.state.images.map((image, index) => 
             <GalleryImage index={index} s3_url={image.s3_url} changeProfileImage={this.changeProfileImage} />
           )}
+          <a href="javascript:;" id="next">&gt;</a>
         </div>
       </div>
     )
