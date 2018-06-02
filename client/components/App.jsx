@@ -10,9 +10,12 @@ export default class App extends React.Component {
     this.state = {
       product_id: 1,
       images: [],
-      profile_image: ''
+      profile_image: '',
+      startIndex: 0,
+      endIndex: 5
     };
-
+    this.handleClickNext = this.handleClickNext.bind(this);
+    this.handleClickPrev = this.handleClickPrev.bind(this);
     this.setProfileImage = this.setProfileImage.bind(this);
     this.changeProfileImage = this.changeProfileImage.bind(this);
   }
@@ -53,6 +56,39 @@ export default class App extends React.Component {
     });
   }
 
+  handleClickNext() {
+    if (this.state.endIndex !== this.state.images.length - 1) {
+      if (this.state.images.length - this.state.endIndex < 6) {
+        let shift = this.state.images.length - this.state.endIndex;
+        this.setState({
+          startIndex: this.state.startIndex + shift,
+          endIndex: this.state.endIndex + shift
+        });
+      } else {
+        this.setState({
+          startIndex: this.state.startIndex + 6,
+          endIndex: this.state.endIndex + 6
+        });
+      }
+    }
+  }
+
+  handleClickPrev() {
+    if (this.state.startIndex !== 0) {
+      if (this.state.startIndex - 6 < 0) {
+        this.setState({
+          startIndex: 0,
+          endIndex: 5
+        });
+      } else {
+        this.setState({
+          startIndex: this.state.startIndex - 6,
+          endIndex: this.state.endIndex - 6
+        });
+      }
+    }
+  }
+
   render() {
     return(
       <div>
@@ -71,11 +107,13 @@ export default class App extends React.Component {
           shouldHideHintAfterFirstActivation: false
         }} />
         <div id="gallery">
-          <a href="#" id="prev">&lt;</a>
-          {this.state.images.map((image, index) => 
-            <GalleryImage index={index} s3_url={image.s3_url} changeProfileImage={this.changeProfileImage} />
-          )}
-          <a href="javascript:;" id="next">&gt;</a>
+          <a href="javascript:;" id="prev" onClick={() => this.handleClickPrev()}>&lt;</a>
+          {this.state.images.map((image, index) => {
+            if (index >= this.state.startIndex && index <= this.state.endIndex) {
+              return <GalleryImage index={index} s3_url={image.s3_url} changeProfileImage={this.changeProfileImage} />
+            }
+          })}
+          <a href="javascript:;" id="next" onClick={() => this.handleClickNext()}>&gt;</a>
         </div>
       </div>
     )
