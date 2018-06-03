@@ -1,9 +1,18 @@
 .image {
   border-style: solid;
+  border-color: #bfc1c1;
   border-width: 1px;
   height: 76px;
   width: 76px;
   margin-left: auto;
-  margin-right: 5px;
   display: inline-block;
+}
+
+.image:hover {
+  border-color: #000000;
+}
+
+.image[value="true"] {
+  border-color: #000000;
+  border-width: 2px;
 }

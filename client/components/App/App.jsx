@@ -2,19 +2,22 @@ import React from 'react';
 import ReactImageMagnify from 'react-image-magnify'
 import axios from 'axios';
 
+import styles from '../App/App.css'
 import GalleryImage from '../GalleryImage/GalleryImage.jsx';
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      productId: 1,
+      productId: 7,
       images: [],
       profileImage: '',
+      selectedImage: '',
       tempProfileImage: null,
       startIndex: 0,
       endIndex: 5
     };
+    this.render = this.render.bind(this);
     this.handleClickNext = this.handleClickNext.bind(this);
     this.handleClickPrev = this.handleClickPrev.bind(this);
     this.setProfileImage = this.setProfileImage.bind(this);
@@ -55,8 +58,9 @@ export default class App extends React.Component {
   changeProfileImage(e) {
     this.setState({
       profileImage: e.target.src,
+      selectedImage: e.target.src,
       tempProfileImage: e.target.src
-    });
+    }, () => this.render());
   }
 
   tempProfileImageOnHover(e) {
@@ -76,7 +80,7 @@ export default class App extends React.Component {
   handleClickNext() {
     if (this.state.endIndex !== this.state.images.length - 1) {
       if (this.state.images.length - this.state.endIndex < 6) {
-        let shift = this.state.images.length - this.state.endIndex;
+        let shift = this.state.images.length - 1 - this.state.endIndex;
         this.setState({
           startIndex: this.state.startIndex + shift,
           endIndex: this.state.endIndex + shift
@@ -108,29 +112,40 @@ export default class App extends React.Component {
 
   render() {
     return(
-      <div>
-        <ReactImageMagnify {...{
-          smallImage: {
-            src: this.state.profileImage,
-            height: 500,
-            width: 500
-          },
-          largeImage: {
-            src: this.state.profileImage,
-            height: 1000,
-            width: 1000
-          },
-          isHintEnabled: true,
-          shouldHideHintAfterFirstActivation: false
-        }} />
-        <div id="gallery">
-          <a href="javascript:;" id="prev" onClick={() => this.handleClickPrev()}>&lt;</a>
+      <div className={ styles.root }>
+        <div className={ styles.profileImage }>
+          <ReactImageMagnify {...{
+            smallImage: {
+              src: this.state.profileImage,
+              height: 500,
+              width: 500
+            },
+            largeImage: {
+              src: this.state.profileImage,
+              height: 1000,
+              width: 1000
+            },
+            isHintEnabled: true,
+            shouldHideHintAfterFirstActivation: false
+          }} />
+        </div>
+        <div className={ styles.gallery }>
+          <a class={ styles.button } id={styles.prev} href="javascript:;" value={this.state.startIndex} onClick={() => this.handleClickPrev()}>&lt;</a>
           {this.state.images.map((image, index) => {
             if (index >= this.state.startIndex && index <= this.state.endIndex) {
-              return <GalleryImage index={index} url={image.s3_url} changeProfileImage={this.changeProfileImage} tempProfileImageOnHover={this.tempProfileImageOnHover} tempProfileImageOffHover={this.tempProfileImageOffHover} />
+              return (
+                <GalleryImage 
+                  selectedImage={this.state.selectedImage}
+                  index={index} 
+                  url={image.s3_url} 
+                  changeProfileImage={this.changeProfileImage} 
+                  tempProfileImageOnHover={this.tempProfileImageOnHover} 
+                  tempProfileImageOffHover={this.tempProfileImageOffHover}
+                />
+              )
             }
           })}
-          <a href="javascript:;" id="next" onClick={() => this.handleClickNext()}>&gt;</a>
+          <a class={ styles.button } id={styles.next} href="javascript:;" value={this.state.images.length - 1 - this.state.endIndex} onClick={() => this.handleClickNext()}>&gt;</a>
         </div>
       </div>
     )
