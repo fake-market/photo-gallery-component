@@ -4,8 +4,8 @@ const postToAWS = (body, name, callback) => {
   const options = ({
     apiVersion: '2006-03-01',
     region: 'us-west-1',
-    accessKeyId: 'AKIAJZSBCX4LDZ3ZVSEA',
-    secretAccessKey: '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',
+    accessKeyId: 'AWS_ACCESS_KEY',
+    secretAccessKey: 'AWS_SECRET_KEY',
     signatureVersion: 'v4'
   });
 
