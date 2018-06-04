@@ -8,7 +8,7 @@ const { router } = require('../server/routers')
 require('../db/config/index.js');
 
 const app = express();
-const PORT = 1990;
+const PORT = 1337;
 
 app.use(helmet());
 app.use(parser.json());
