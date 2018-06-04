@@ -2,6 +2,7 @@ const express = require('express');
 const parser = require('body-parser');
 const helmet = require('helmet');
 const path = require('path');
+const fileUpload = require('express-fileupload');
 
 const { router } = require('../server/routers')
 
@@ -11,6 +12,7 @@ const app = express();
 const PORT = 1337;
 
 app.use(helmet());
+app.use(fileUpload());
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../static')));

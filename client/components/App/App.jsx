@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import styles from '../App/App.css'
 import GalleryImage from '../GalleryImage/GalleryImage.jsx';
+import Upload from '../Upload/Upload.jsx'
 
 export default class App extends React.Component {
   constructor() {
@@ -146,6 +147,9 @@ export default class App extends React.Component {
             }
           })}
           <a class={ styles.button } id={styles.next} href="javascript:;" value={this.state.images.length - 1 - this.state.endIndex} onClick={() => this.handleClickNext()}>&gt;</a>
+        </div>
+        <div>
+          <Upload />
         </div>
       </div>
     )
