@@ -16,3 +16,7 @@
   border-color: #000000;
   border-width: 2px;
 }
+
+.image:active {
+  border-color: #2B87BE;
+}
