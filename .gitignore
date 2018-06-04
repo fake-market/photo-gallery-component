@@ -61,4 +61,5 @@ typings/
 .next
 
 # additional files
-bundle.js
+static/bundle.js
+config/

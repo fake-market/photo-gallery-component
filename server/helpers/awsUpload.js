@@ -1,11 +1,12 @@
 const AWS = require('aws-sdk');
+const { ACCESS_KEY, SECRET_KEY } = require('../../config/aws.config');
 
 const postToAWS = (body, name, callback) => {
   const options = ({
     apiVersion: '2006-03-01',
     region: 'us-west-1',
-    accessKeyId: 'AWS_ACCESS_KEY',
-    secretAccessKey: 'AWS_SECRET_KEY',
+    accessKeyId: ACCESS_KEY,
+    secretAccessKey: SECRET_KEY,
     signatureVersion: 'v4'
   });
 
