@@ -133,21 +133,27 @@ export default class App extends React.Component {
         </div>
         <div className={ styles.gallery }>
           <a class={ styles.button } id={styles.prev} href="javascript:;" value={this.state.startIndex} onClick={() => this.handleClickPrev()}>&lt;</a>
-          {this.state.images.map((image, index) => {
-            if (index >= this.state.startIndex && index <= this.state.endIndex) {
-              return (
-                <GalleryImage 
-                  selectedImage={this.state.selectedImage}
-                  isMatch = {this.state.selectedImage === image.s3_url}
-                  index={index} 
-                  url={image.s3_url} 
-                  changeProfileImage={this.changeProfileImage} 
-                  tempProfileImageOnHover={this.tempProfileImageOnHover} 
-                  tempProfileImageOffHover={this.tempProfileImageOffHover}
-                />
-              )
-            }
-          })}
+          <table>
+            <tbody>
+              <tr>
+                {this.state.images.map((image, index) => {
+                  if (index >= this.state.startIndex && index <= this.state.endIndex) {
+                    return (
+                      <GalleryImage 
+                        selectedImage={this.state.selectedImage}
+                        isMatch = {this.state.selectedImage === image.s3_url}
+                        index={index} 
+                        url={image.s3_url} 
+                        changeProfileImage={this.changeProfileImage} 
+                        tempProfileImageOnHover={this.tempProfileImageOnHover} 
+                        tempProfileImageOffHover={this.tempProfileImageOffHover}
+                      />
+                    )
+                  }
+                })}
+              </tr>
+            </tbody>
+          </table>
           <a class={ styles.button } id={styles.next} href="javascript:;" value={this.state.images.length - 1 - this.state.endIndex} onClick={() => this.handleClickNext()}>&gt;</a>
         </div>
       </div>

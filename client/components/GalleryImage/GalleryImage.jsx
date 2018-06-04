@@ -34,13 +34,15 @@ export default class GalleryImage extends React.Component {
 
   render() {
     return(
-      <img className={ styles.image }
-        src={this.state.image} 
-        value={this.state.isMatch}
-        onMouseOver={(e) => this.tempProfileImageOnHover(e)}
-        onMouseLeave={(e) => this.tempProfileImageOffHover(e)}
-        onClick={(e) => this.selectThumbnail(e)}
-      />
+      <td>
+        <img className={ styles.image }
+          src={this.state.image} 
+          value={this.state.isMatch}
+          onMouseOver={(e) => this.tempProfileImageOnHover(e)}
+          onMouseLeave={(e) => this.tempProfileImageOffHover(e)}
+          onClick={(e) => this.selectThumbnail(e)}
+        />
+      </td>
     )
   }
 
