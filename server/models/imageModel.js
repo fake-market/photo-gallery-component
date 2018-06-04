@@ -15,6 +15,9 @@ const imageModel = {
       console.log('error querying db', err);
       callback(err, null);
     })
+  },
+  post: (callback) => {
+    
   }
 }
 
