@@ -21,4 +21,3 @@ const imageModel = {
 module.exports = {
   imageModel: imageModel
 }
-
