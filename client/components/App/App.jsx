@@ -37,7 +37,7 @@ export default class App extends React.Component {
       }
     })
     .then(res => {
-      console.log('axios fetch images successful', res);
+      console.log('axios fetch images successful');
       this.setState({
         images: res.data,
       }, this.setProfileImage)
@@ -55,12 +55,14 @@ export default class App extends React.Component {
     })
   }
 
-  changeProfileImage(e) {
+  changeProfileImage(src) {
     this.setState({
-      profileImage: e.target.src,
-      selectedImage: e.target.src,
-      tempProfileImage: e.target.src
-    }, () => this.render());
+      profileImage: src,
+      selectedImage: src,
+      tempProfileImage: src
+    }, () => {
+      this.render()
+    });
   }
 
   tempProfileImageOnHover(e) {
@@ -136,6 +138,7 @@ export default class App extends React.Component {
               return (
                 <GalleryImage 
                   selectedImage={this.state.selectedImage}
+                  isMatch = {this.state.selectedImage === image.s3_url}
                   index={index} 
                   url={image.s3_url} 
                   changeProfileImage={this.changeProfileImage} 
