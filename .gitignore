@@ -62,4 +62,5 @@ typings/
 
 # additional files
 static/bundle.js
+bundle.js
 config/
