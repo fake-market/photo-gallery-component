@@ -130,7 +130,7 @@ export default class App extends React.Component {
 
   render() {
     return(
-      <div className={ styles.root }>
+      <div>
         <div className={ styles.profileImage }>
           <ReactImageMagnify {...{
             smallImage: {
