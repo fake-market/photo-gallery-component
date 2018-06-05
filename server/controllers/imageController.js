@@ -13,9 +13,10 @@ const imageController = {
     })
   },
   post: (req, res) => {
-    let body = req.files.fileUpload.data;
-    let name = req.files.fileUpload.name;
-    let productId = 7 //req.param.productId;
+    console.log(req.files);
+    let body = req.files[Object.keys(req.files)[0]].data;
+    let name = req.files[Object.keys(req.files)[0]].name;
+    let productId = Object.keys(req.files)[0].split(',')[1];
     postToAWS(body, name, (err, data) => {
       if (err) {
         console.log('error making AWS Post request', err);
