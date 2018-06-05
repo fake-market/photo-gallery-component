@@ -131,25 +131,27 @@ export default class App extends React.Component {
   render() {
     return(
       <div>
-        <div className={ styles.profileImage }>
-          <ReactImageMagnify {...{
-            smallImage: {
-              src: this.state.profileImage,
-              height: 500,
-              width: 500
-            },
-            largeImage: {
-              src: this.state.profileImage,
-              height: 1000,
-              width: 1000
-            },
-            isHintEnabled: true,
-            shouldHideHintAfterFirstActivation: false
-          }} />
+        <div className={ styles.profileImageContainer }>
+          <div className={ styles.profileImage}>
+            <ReactImageMagnify {...{
+              smallImage: {
+                src: this.state.profileImage,
+                height: 500,
+                width: 500
+              },
+              largeImage: {
+                src: this.state.profileImage,
+                height: 1000,
+                width: 1000,
+              },
+              isHintEnabled: true,
+              shouldHideHintAfterFirstActivation: false
+            }} />
+          </div>
         </div>
         <div className={ styles.gallery }>
           <a class={ styles.button } id={styles.prev} href="javascript:;" value={this.state.startIndex} onClick={() => this.handleClickPrev()}>&lt;</a>
-          <table>
+          <table cellSpacing="0">
             <tbody>
               <tr>
                 {this.state.images.map((image, index) => {
