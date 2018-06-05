@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const { ACCESS_KEY, SECRET_KEY } = require('../../config/aws.config');
+const { ACCESS_KEY, SECRET_KEY, BUCKET_NAME } = require('../../config/aws.config');
 
 const postToAWS = (body, name, callback) => {
   const options = ({
@@ -13,7 +13,7 @@ const postToAWS = (body, name, callback) => {
   const s3 = new AWS.S3(options);
 
   s3.putObject({
-    Bucket: 'hrla22-ebay-fe',
+    Bucket: BUCKET_NAME,
     Key: name,
     ACL: 'public-read',
     Body: body,
