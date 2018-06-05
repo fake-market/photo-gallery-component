@@ -4,8 +4,8 @@
   border-width: 1px;
   height: 76px;
   width: 76px;
-  margin-left: 1px;
-  margin-right: 1px;
+  margin: 1px;
+  padding: 1px;
   display: inline-block;
 }
 
@@ -16,8 +16,9 @@
 .image[value="true"] {
   border-color: #000000;
   border-width: 2px;
-  height: 75px;
-  width: 75px;
+  height: 76px;
+  width: 76px;
+  padding: 0px;
 }
 
 .image:active {

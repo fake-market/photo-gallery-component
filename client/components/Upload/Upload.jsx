@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Upload.css';
 
 export default class Upload extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ export default class Upload extends React.Component {
           <input name={this.state.name} type="file"/>
           <input type="submit" value="submit" id="submit" />
         </form>
-        <iframe name="formDestination"></iframe>
+        <iframe className={ styles.iframe } name="formDestination"></iframe>
       </div>
     )
   }
