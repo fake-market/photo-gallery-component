@@ -5,7 +5,9 @@
 .gallery {
   display: inline-flex;
   align-items: center;
+  margin-right: 1px;
   margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .profileImage {
