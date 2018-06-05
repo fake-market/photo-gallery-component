@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import styles from '../App/App.css'
 import GalleryImage from '../GalleryImage/GalleryImage.jsx';
+import Upload from '../Upload/Upload.jsx'
 
 export default class App extends React.Component {
   constructor() {
@@ -24,6 +25,7 @@ export default class App extends React.Component {
     this.changeProfileImage = this.changeProfileImage.bind(this);
     this.tempProfileImageOffHover = this.tempProfileImageOffHover.bind(this);
     this.tempProfileImageOnHover = this.tempProfileImageOnHover.bind(this);
+    this.postImage = this.postImage.bind(this);
   }
 
   componentDidMount() {
@@ -112,6 +114,20 @@ export default class App extends React.Component {
     }
   }
 
+  postImage(e) {
+    e.preventDefault();
+    console.log(e.target);
+    axios.post('/products/images', {
+      productId: this.state.productId
+    })
+    .then((res) => {
+      console.log('successfully posted image');
+    })
+    .catch((err) => {
+      console.log('error posting image,', err);
+    })
+  }
+
   render() {
     return(
       <div className={ styles.root }>
@@ -155,6 +171,9 @@ export default class App extends React.Component {
             </tbody>
           </table>
           <a class={ styles.button } id={styles.next} href="javascript:;" value={this.state.images.length - 1 - this.state.endIndex} onClick={() => this.handleClickNext()}>&gt;</a>
+        </div>
+        <div>
+          <Upload productId={this.state.productId} postImage={this.postImage}/>
         </div>
       </div>
     )

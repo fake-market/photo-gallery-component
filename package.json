@@ -20,11 +20,11 @@
   },
   "homepage": "https://github.com/kevinmjacobs/hrla22-capstone-fe#readme",
   "dependencies": {
-    "aws-amplify": "^0.4.1",
     "aws-sdk": "^2.249.1",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
     "helmet": "^3.12.1",
     "nodemon": "^1.17.5",
     "path": "^0.12.7",
