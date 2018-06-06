@@ -34,6 +34,10 @@ export default class App extends React.Component {
 
   fetchImages() {
     axios.get('/products/images', {
+      proxy: { 
+        host: 'localhost', 
+        port: 1337 
+      },
       params: {
         productId: this.state.productId
       }
@@ -130,7 +134,7 @@ export default class App extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="app">
         <div className={ styles.profileImageContainer }>
           <div className={ styles.profileImage}>
             <ReactImageMagnify {...{
@@ -158,6 +162,7 @@ export default class App extends React.Component {
                   if (index >= this.state.startIndex && index <= this.state.endIndex) {
                     return (
                       <GalleryImage 
+                        key={index}
                         selectedImage={this.state.selectedImage}
                         isMatch = {this.state.selectedImage === image.s3_url}
                         index={index} 
