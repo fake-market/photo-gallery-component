@@ -82,11 +82,17 @@ describe('Get Images API', () => {
     };
 
     mock.onGet('/products/images', { params: { productId: 1 } }).reply(200, data);
+    mock.onPost('/products/images', { params: { productId: 1 } }).reply(201, data) ;
 
     axios.get('/products/images', { params: { productId: 1 } }) 
     .then(function(response) {
       expect(response.data).toEqual(data);
-      console.log(response.data);
+      done();
+    });
+
+    axios.post('/products/images', { params: { productId: 1 } }) 
+    .then(function(response) {
+      expect(response.data).toEqual(data);
       done();
     });
 
