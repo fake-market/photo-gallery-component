@@ -10,12 +10,14 @@
   text-align: center;
   padding-top: 15px;
   padding-bottom: 15px;
+  height: 500px;
 }
 
 .profileImage {
   margin: auto;
   text-align: center;
   width: 500px;
+  height: 500px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -42,4 +44,15 @@
 
 .button#next[value="0"] {
   color: #C5C5C5;
+}
+
+.table {
+  margin: auto;
+  text-align: center;
+  align-items: center;
+}
+
+.tableRow {
+  text-align: center;
+  align-items: center;
 }
