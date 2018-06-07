@@ -2,10 +2,11 @@ import React from 'react';
 import ReactImageMagnify from 'react-image-magnify'
 import axios from 'axios';
 
-import { NO_IMAGE_URL } from '../../../config/aws.config.js';
 import styles from '../App/App.css'
 import GalleryImage from '../GalleryImage/GalleryImage.jsx';
 import Upload from '../Upload/Upload.jsx'
+
+const NO_IMAGE_URL = 'https://s3-us-west-1.amazonaws.com/hrla22-ebay-fe/NoImageFound.jpg';
 
 export default class App extends React.Component {
   constructor() {
