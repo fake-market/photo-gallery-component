@@ -26,13 +26,13 @@ describe('App shallow tests', () => {
     expect(shallowWrapper.find('div.gallery').exists()).to.eq(true);
   });
 
-  it('renders previous button onto app' ,() => {
-    expect(shallowWrapper.find('a#prev').exists()).to.eq(true);
-  });
+  // it('renders previous button onto app' ,() => {
+  //   expect(shallowWrapper.find('a#prev').exists()).to.eq(true);
+  // });
 
-  it('renders next button onto app' ,() => {
-    expect(shallowWrapper.find('a#next').exists()).to.eq(true);
-  });
+  // it('renders next button onto app' ,() => {
+  //   expect(shallowWrapper.find('a#next').exists()).to.eq(true);
+  // });
 
 });
 
