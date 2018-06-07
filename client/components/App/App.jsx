@@ -10,7 +10,7 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      productId: 4,
+      productId: 1,
       images: [],
       profileImage: '',
       selectedImage: '',
@@ -46,7 +46,14 @@ export default class App extends React.Component {
       console.log('axios fetch images successful');
       this.setState({
         images: res.data,
-      }, this.setProfileImage)
+      }, () => {
+        this.setProfileImage();
+        if (this.state.images.length - 1 < this.state.endIndex) {
+          this.setState({
+            endIndex: this.state.images.length - 1
+          })
+        }
+      })
     })
     .catch(err => console.log('axios error fetching images,', err))
   }
