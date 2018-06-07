@@ -2,6 +2,7 @@ import React from 'react';
 import ReactImageMagnify from 'react-image-magnify'
 import axios from 'axios';
 
+import { NO_IMAGE_URL } from '../../../config/aws.config.js';
 import styles from '../App/App.css'
 import GalleryImage from '../GalleryImage/GalleryImage.jsx';
 import Upload from '../Upload/Upload.jsx'
@@ -59,13 +60,19 @@ export default class App extends React.Component {
   }
 
   setProfileImage() {
-    this.state.images.forEach(image => {
-      if (image.is_primary === 1) {
-        this.setState({
-          profileImage: image.s3_url
-        })
-      }
-    })
+    if (this.state.images.length === 0) {
+      this.setState({
+        profileImage: NO_IMAGE_URL
+      })
+    } else {
+      this.state.images.forEach(image => {
+        if (image.is_primary === 1) {
+          this.setState({
+            profileImage: image.s3_url
+          })
+        }
+      })
+    }
   }
 
   changeProfileImage(src) {
@@ -139,32 +146,60 @@ export default class App extends React.Component {
     })
   }
 
+  renderProfileImage() {
+    if (this.state.images.length === 0) {
+      return (
+        <img src={this.state.profileImage} height="500" width="500"/>
+      )
+    } else {
+      return (
+        <ReactImageMagnify {...{
+          smallImage: {
+            src: this.state.profileImage,
+            height: 500,
+            width: 500
+          },
+          largeImage: {
+            src: this.state.profileImage,
+            height: 1000,
+            width: 1000,
+          },
+          isHintEnabled: true,
+          shouldHideHintAfterFirstActivation: false
+        }} />
+      )
+    }
+  }
+
+  renderPrevButton() {
+    if (this.state.images.length > 6) {
+      return (
+        <a class={ styles.button } id={styles.prev} href="javascript:;" value={this.state.startIndex} onClick={() => this.handleClickPrev()}>&lt;</a>
+      )
+    }
+  }
+
+  renderNextButton() {
+    if (this.state.images.length > 6) {
+      return (
+        <a class={ styles.button } id={styles.next} href="javascript:;" value={this.state.images.length - 1 - this.state.endIndex} onClick={() => this.handleClickNext()}>&gt;</a>
+      )
+    }
+  }
+
   render() {
     return(
       <div className="app">
         <div className={ styles.profileImageContainer }>
           <div className={ styles.profileImage}>
-            <ReactImageMagnify {...{
-              smallImage: {
-                src: this.state.profileImage,
-                height: 500,
-                width: 500
-              },
-              largeImage: {
-                src: this.state.profileImage,
-                height: 1000,
-                width: 1000,
-              },
-              isHintEnabled: true,
-              shouldHideHintAfterFirstActivation: false
-            }} />
+            {this.renderProfileImage()}
           </div>
         </div>
         <div className={ styles.gallery }>
-          <a class={ styles.button } id={styles.prev} href="javascript:;" value={this.state.startIndex} onClick={() => this.handleClickPrev()}>&lt;</a>
-          <table cellSpacing="0">
+          {this.renderPrevButton()}
+          <table className={ styles.table } cellSpacing="0">
             <tbody>
-              <tr>
+              <tr className={ styles.table }>
                 {this.state.images.map((image, index) => {
                   if (index >= this.state.startIndex && index <= this.state.endIndex) {
                     return (
@@ -184,8 +219,8 @@ export default class App extends React.Component {
               </tr>
             </tbody>
           </table>
-          <a class={ styles.button } id={styles.next} href="javascript:;" value={this.state.images.length - 1 - this.state.endIndex} onClick={() => this.handleClickNext()}>&gt;</a>
-        </div>
+          {this.renderNextButton()}
+          </div>
         <div>
           <Upload productId={this.state.productId} postImage={this.postImage}/>
         </div>
