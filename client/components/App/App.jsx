@@ -2,7 +2,7 @@ import React from 'react';
 import ReactImageMagnify from 'react-image-magnify'
 import axios from 'axios';
 
-import { NO_IMAGE_URL } from '../../../config/aws.config';
+import { NO_IMAGE_URL } from '../../../config/aws.config.js';
 import styles from '../App/App.css'
 import GalleryImage from '../GalleryImage/GalleryImage.jsx';
 import Upload from '../Upload/Upload.jsx'
@@ -11,7 +11,7 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      productId: 3,
+      productId: 1,
       images: [],
       profileImage: '',
       selectedImage: '',
