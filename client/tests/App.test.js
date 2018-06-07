@@ -1,22 +1,14 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import App from '../components/App/App.jsx';
-import styles from '../components/App/App.css';
-// import GalleryImage from '../GalleryImage/GalleryImage.jsx'
+// import styles from '../components/App/App.css';
+import GalleryImage from '../components/GalleryImage/GalleryImage.jsx'
 import { shallow, mount } from 'enzyme';
 import { expect } from 'chai';
-// import sinon from 'sinon';
-import jsdom from 'jsdom';
-import { truncateSync } from 'fs';
-const { JSDOM } = jsdom;
-
-const doc = new JSDOM('<!doctype html><html><body></body></html>')
-global.document = doc
-global.window = doc.defaultView
+import sinon from 'sinon';
 
 const shallowWrapper = shallow(<App />);
 
-describe('App rendering tests', () => {
+describe('App shallow tests', () => {
   //basic rendering of components to page
   it('renders App component to page', () => {
     expect(shallowWrapper.find('div.app').exists()).to.eq(true);
@@ -44,20 +36,25 @@ describe('App rendering tests', () => {
 
 });
 
-describe('App state tests', () => {
+describe('App mount tests', () => {
+  it('calls componentDidMount', () => {
+    sinon.spy(App.prototype, 'componentDidMount');
+    const wrapper = mount(<App />);
+    expect(App.prototype.componentDidMount.calledOnce).to.equal(true);
+  })
 
+  it('can set props', () => {
+    const wrapper = mount(<App productId={1}/>);
+    expect(wrapper.props().productId).to.equal(1);
+    wrapper.setProps( { productId: 2 } );
+    expect(wrapper.props().productId).to.equal(2);
+  })
 
-  //states are correctly rendered
-  it('should create state object', () => {
-    expect(typeof shallowWrapper.state()).to.eq('object');
-  });
-
-  // it('calls componentDidMount', () => {
-  //   sinon.spy(App.prototype, 'componentDidMount');
-  //   const wrapper = mount(<App />);
-  //   expect(App.prototype.componentDidMount.calledOnce).to.equal(true);
-  // });
-
+  it('can set state', () => {
+    const wrapper = mount(<App />);
+    wrapper.setState( { profileImage: 'http://test.com' } );
+    expect(wrapper.state().profileImage).to.equal('http://test.com');
+  })
 
 })
 

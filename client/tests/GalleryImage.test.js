@@ -2,12 +2,6 @@ import React from 'react';
 import GalleryImage from '../components/GalleryImage/GalleryImage.jsx';
 import { shallow, mount } from 'enzyme';
 import { expect } from 'chai';
-import jsdom from 'jsdom';
-const { JSDOM } = jsdom;
-
-const doc = new JSDOM('<!doctype html><html><body></body></html>')
-global.document = doc
-global.window = doc.defaultView
 
 const shallowWrapper = shallow(<GalleryImage />);
 
