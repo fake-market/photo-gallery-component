@@ -12,7 +12,7 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      productId: 11,
+      productId: 1,
       images: [],
       profileImage: '',
       selectedImage: '',
