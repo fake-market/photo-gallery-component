@@ -1,3 +1,9 @@
+const webpack = require('webpack');
+const webpackMiddleware = require('webpack-dev-middleware');
+const webpackConfig = require('../webpack.config');
+
+const compiler = webpack(webpackConfig);
+
 const express = require('express');
 const parser = require('body-parser');
 const helmet = require('helmet');
@@ -10,6 +16,11 @@ require('../db/config/index.js');
 
 const app = express();
 const PORT = 1337;
+
+// uses webpack-dev
+app.use(webpackMiddleware(compiler, {
+  publicPath: '../client'
+}));
 
 app.use(helmet());
 app.use(fileUpload());
