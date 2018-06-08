@@ -12,7 +12,7 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      productId: 1,
+      productId: 11,
       images: [],
       profileImage: '',
       selectedImage: '',
@@ -52,7 +52,7 @@ export default class App extends React.Component {
         this.setProfileImage();
         if (this.state.images.length - 1 < this.state.endIndex) {
           this.setState({
-            endIndex: this.state.images.length - 1
+            endIndex: (this.state.images.length - 1 < 0 ? 0 : this.state.images.length - 1)
           })
         }
       })
@@ -150,7 +150,12 @@ export default class App extends React.Component {
   renderProfileImage() {
     if (this.state.images.length === 0) {
       return (
-        <img src={this.state.profileImage} height="500" width="500"/>
+        <img 
+          className="noImage"
+          src={this.state.profileImage} 
+          height="500"
+          width="500"
+        />
       )
     } else {
       return (
