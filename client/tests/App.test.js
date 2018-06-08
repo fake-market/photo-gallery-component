@@ -1,7 +1,5 @@
 import React from 'react';
 import App from '../components/App/App.jsx';
-// import styles from '../components/App/App.css';
-import GalleryImage from '../components/GalleryImage/GalleryImage.jsx'
 import { shallow, mount } from 'enzyme';
 import { expect } from 'chai';
 import sinon from 'sinon';
@@ -26,14 +24,6 @@ describe('App shallow tests', () => {
     expect(shallowWrapper.find('div.gallery').exists()).to.eq(true);
   });
 
-  // it('renders previous button onto app' ,() => {
-  //   expect(shallowWrapper.find('a#prev').exists()).to.eq(true);
-  // });
-
-  // it('renders next button onto app' ,() => {
-  //   expect(shallowWrapper.find('a#next').exists()).to.eq(true);
-  // });
-
 });
 
 describe('App mount tests', () => {
@@ -55,7 +45,6 @@ describe('App mount tests', () => {
     wrapper.setState( { profileImage: 'http://test.com' } );
     expect(wrapper.state().profileImage).to.equal('http://test.com');
   })
-
 
   it('should render No Images picture if no images', () => {
     const wrapper = mount(<App />);

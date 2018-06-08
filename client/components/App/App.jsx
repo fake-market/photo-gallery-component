@@ -226,7 +226,7 @@ export default class App extends React.Component {
             </tbody>
           </table>
           {this.renderNextButton()}
-          </div>
+        </div>
         <div>
           <Upload productId={this.state.productId} postImage={this.postImage}/>
         </div>
