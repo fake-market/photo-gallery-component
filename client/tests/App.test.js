@@ -129,4 +129,29 @@ describe('Buttons setting indices', () => {
 
   })
 
+  describe('Hovering changing profile image', () => {
+    it('should change states if hovered over', () =>{
+      const wrapper = mount(<App />);
+      wrapper.setState({
+        profileImage: 'profile.jpg'
+      })
+      wrapper.instance().tempProfileImageOnHover({ target: { src: 'test.jpg'} });
+      expect(wrapper.state().tempProfileImage).to.equal('profile.jpg');
+      expect(wrapper.state().profileImage).to.equal('test.jpg');
+    })
+
+    it('should change states if hovered over', () =>{
+      const wrapper = mount(<App />);
+      wrapper.setState({
+        profileImage: 'profile.jpg'
+      })
+      wrapper.instance().tempProfileImageOnHover({ target: { src: 'test'} });
+      wrapper.instance().tempProfileImageOffHover();
+      expect(wrapper.state().tempProfileImage).to.equal(null);
+      expect(wrapper.state().profileImage).to.equal('profile.jpg');
+
+    })
+
+  })
+
 })
