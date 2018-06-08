@@ -7,21 +7,20 @@ import sinon from 'sinon';
 const shallowWrapper = shallow(<App />);
 
 describe('App shallow tests', () => {
-  //basic rendering of components to page
   it('renders App component to page', () => {
-    expect(shallowWrapper.find('div.app').exists()).to.eq(true);
+    expect(shallowWrapper.find('div.app').exists()).to.equal(true);
   });
 
   it('renders Profile Image component to page', () => {
-    expect(shallowWrapper.find('div.profileImage').exists()).to.eq(true);
+    expect(shallowWrapper.find('div.profileImage').exists()).to.equal(true);
   });
 
   it('profile image container has current className', () => {
-    expect(shallowWrapper.find('div.profileImageContainer').exists()).to.eq(true);
+    expect(shallowWrapper.find('div.profileImageContainer').exists()).to.equal(true);
   })
 
   it('renders Image Gallery to page', () => {
-    expect(shallowWrapper.find('div.gallery').exists()).to.eq(true);
+    expect(shallowWrapper.find('div.gallery').exists()).to.equal(true);
   });
 
 });
@@ -150,6 +149,42 @@ describe('Buttons setting indices', () => {
       expect(wrapper.state().tempProfileImage).to.equal(null);
       expect(wrapper.state().profileImage).to.equal('profile.jpg');
 
+    })
+
+  })
+
+  describe('Changing Profile Images', () => {
+    it('should change profile image if thumbnail is selected', () =>{
+      const wrapper = mount(<App />);
+      expect(wrapper.state().profileImage).to.equal('');
+      expect(wrapper.state().selectedImage).to.equal('');
+      expect(wrapper.state().tempProfileImage).to.equal(null);
+      wrapper.instance().changeProfileImage('test.jpg');
+      expect(wrapper.state().profileImage).to.equal('test.jpg');
+      expect(wrapper.state().selectedImage).to.equal('test.jpg');
+      expect(wrapper.state().tempProfileImage).to.equal('test.jpg');
+    })
+
+    it('should change profile image if thumbnail is selected', () =>{
+      const wrapper = mount(<App />);
+      const images = [
+        {
+          is_primary: 0,
+          s3_url: 'test1.jpg'
+        },
+        {
+          is_primary: 1,
+          s3_url: 'test2.jpg'
+        }
+      ];
+      expect(wrapper.state().profileImage).to.equal('');
+      wrapper.instance().setProfileImage();
+      expect(wrapper.state().profileImage).to.equal('https://s3-us-west-1.amazonaws.com/hrla22-ebay-fe/NoImageFound.jpg');
+      wrapper.setState({
+        images: images
+      });
+      wrapper.instance().setProfileImage();
+      expect(wrapper.state().profileImage).to.equal('test2.jpg');
     })
 
   })
