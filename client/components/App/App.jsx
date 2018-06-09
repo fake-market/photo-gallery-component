@@ -203,7 +203,7 @@ export default class App extends React.Component {
         </div>
         <div className={ styles.gallery }>
           {this.renderPrevButton()}
-          <table cellSpacing="0">
+          <table className={ styles.table } cellSpacing="0">
             <tbody>
               <tr>
                 {this.state.images.map((image, index) => {
