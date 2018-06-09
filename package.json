@@ -36,8 +36,6 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-image-magnify": "^2.7.0",
-    "react-native": "^0.55.4",
-    "rest": "^2.0.0",
     "sequelize": "^4.37.10"
   },
   "devDependencies": {
@@ -54,10 +52,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.1.0",
-    "jest-enzyme": "^6.0.1",
-    "mocha": "^5.2.0",
     "react-scripts": "^1.1.4",
-    "react-test-renderer": "^16.4.0",
     "sinon": "^5.0.10",
     "style-loader": "^0.21.0",
     "webpack": "^4.10.2",

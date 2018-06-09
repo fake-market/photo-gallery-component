@@ -13,7 +13,7 @@ const imageController = {
     })
   },
   post: (req, res) => {
-    console.log(req.files);
+    console.log('file data from upload:', req.files);
     let body = req.files[Object.keys(req.files)[0]].data;
     let name = req.files[Object.keys(req.files)[0]].name;
     let productId = Object.keys(req.files)[0].split(',')[1];
@@ -23,7 +23,7 @@ const imageController = {
         res.send(err).status(500);
       }
       else {
-        console.log('successfully posted to AWS', data);
+        console.log('successfully posted to AWS');
         imageModel.post(productId, name, (err, results) => {
           if (err) {
             console.log('error posting to DB,', err);
