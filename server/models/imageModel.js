@@ -24,38 +24,21 @@ const imageModel = {
       }
     })
     .then((res) => {
-      if (!res) {
-        console.log('did not find any existing products with product_id =', product_id, 'creating as primary');
-        Image.create({
-          product_id: product_id,
-          is_primary: 1,
-          s3_url: `https://s3-us-west-1.amazonaws.com/${BUCKET_NAME}/${name}`
-        })
-        .then((response) => {
-          console.log('successfully posted primary file to db');
-          callback(null, response);
-        })
-        .catch((err) => {
-          console.log('error posting primary file to db', err);
-          callback(err, null);
-        })
-      }
-      else {
-        console.log('product already exists in db, creating as non-primary');
-        Image.create({
-          product_id: product_id,
-          is_primary: 0,
-          s3_url: `https://s3-us-west-1.amazonaws.com/${BUCKET_NAME}/${name}`
-        })
-        .then((response) => {
-          console.log('successfully posted file to db');
-          callback(null, response);
-        })
-        .catch((err) => {
-          console.log('error posting file to db', err);
-          callback(err, null);
-        })
-      }
+      let message = res ? 'product already exists in db, creating as non-primary' : `did not find any existing products with product_id = ${product_id}, creating as primary`;
+      console.log(message);
+      Image.create({
+        product_id: product_id,
+        is_primary: (res ? 0 : 1),
+        s3_url: `https://s3-us-west-1.amazonaws.com/${BUCKET_NAME}/${name}`
+      })
+      .then((response) => {
+        console.log('successfully posted to db');
+        callback(null, response);
+      })
+      .catch((err) => {
+        console.log('error posting to db', err);
+        callback(err, null);
+      })
     })
     .catch((err) => {
       console.log('error querying db', err);
