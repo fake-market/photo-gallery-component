@@ -205,7 +205,7 @@ export default class App extends React.Component {
           {this.renderPrevButton()}
           <table className={ styles.table } cellSpacing="0">
             <tbody>
-              <tr className={ styles.table }>
+              <tr className={ styles.tableRow }>
                 {this.state.images.map((image, index) => {
                   if (index >= this.state.startIndex && index <= this.state.endIndex) {
                     return (
