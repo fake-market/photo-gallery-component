@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const parser = require('body-parser');
 const helmet = require('helmet');
 const path = require('path');
@@ -13,6 +14,7 @@ const PORT = 1337;
 
 app.use(helmet());
 app.use(fileUpload());
+app.use(cors());
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../static')));

@@ -35,7 +35,7 @@ export default class App extends React.Component {
   }
 
   fetchImages() {
-    axios.get('/products/images', {
+    axios.get('http://localhost:1337/products/images', {
       proxy: { 
         host: 'localhost', 
         port: 1337 
