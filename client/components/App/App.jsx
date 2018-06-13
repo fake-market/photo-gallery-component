@@ -45,7 +45,7 @@ export default class App extends React.Component {
       }
     })
     .then(res => {
-      console.log('axios fetch images successful');
+      console.log('fetch images successful');
       this.setState({
         images: res.data,
       }, () => {
