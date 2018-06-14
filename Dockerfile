@@ -1,10 +1,12 @@
-FROM node:7
-WORKDIR /usr/src/app
+FROM node:8.4.0
 
-COPY package*.json ./
+RUN mkdir /app
+ADD . /app
+WORKDIR /app
 
-RUN npm install
+COPY package.json .
+COPY package-lock.json .
+
+RUN npm install --quiet
 
 COPY . .
-EXPOSE 80
-CMD [ "npm", "start"]
