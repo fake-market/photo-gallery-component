@@ -36,10 +36,6 @@ export default class App extends React.Component {
 
   fetchImages() {
     axios.get('/products/images', {
-      proxy: { 
-        host: 'localhost', 
-        port: 1337 
-      },
       params: {
         productId: this.state.productId
       }
