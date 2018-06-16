@@ -64,3 +64,5 @@ typings/
 static/bundle.js
 bundle.js
 config/
+docker-compose.yml
+aws-pem

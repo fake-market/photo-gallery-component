@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import styles from '../App/App.css'
 import GalleryImage from '../GalleryImage/GalleryImage.jsx';
-import Upload from '../Upload/Upload.jsx'
+// import Upload from '../Upload/Upload.jsx'
 
 const NO_IMAGE_URL = 'https://s3-us-west-1.amazonaws.com/hrla22-ebay-fe/NoImageFound.jpg';
 
@@ -35,11 +35,7 @@ export default class App extends React.Component {
   }
 
   fetchImages() {
-    axios.get('http://localhost:1337/products/images', {
-      proxy: { 
-        host: 'localhost', 
-        port: 1337 
-      },
+    axios.get('http://ec2-34-226-152-166.compute-1.amazonaws.com:1337/products/images', {
       params: {
         productId: this.state.productId
       }
@@ -136,7 +132,7 @@ export default class App extends React.Component {
   postImage(e) {
     e.preventDefault();
     console.log(e.target);
-    axios.post('/products/images', {
+    axios.post('http://ec2-34-226-152-166.compute-1.amazonaws.com:1337/products/images', {
       productId: this.state.productId
     })
     .then((res) => {
@@ -227,9 +223,9 @@ export default class App extends React.Component {
           </table>
           {this.renderNextButton()}
         </div>
-        <div>
+        {/* <div>
           <Upload productId={this.state.productId} postImage={this.postImage}/>
-        </div>
+        </div> */}
       </div>
     )
   }

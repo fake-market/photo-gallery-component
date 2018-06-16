@@ -1,6 +1,6 @@
 const sequelize = require('sequelize');
-const connection = new sequelize('product_images','root','', {
-  host: 'localhost',
+const connection = new sequelize('product_images','root','root', {
+  host: 'db',
   dialect: 'postgres'
 });
 
