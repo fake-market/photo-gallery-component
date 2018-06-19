@@ -35,7 +35,7 @@ export default class App extends React.Component {
   }
 
   fetchImages() {
-    axios.get('http://ec2-34-226-152-166.compute-1.amazonaws.com:1337/products/images', {
+    axios.get('http://ec2-54-174-114-166.compute-1.amazonaws.com:1337/products/images', {
       params: {
         productId: this.state.productId
       }
@@ -132,7 +132,7 @@ export default class App extends React.Component {
   postImage(e) {
     e.preventDefault();
     console.log(e.target);
-    axios.post('http://ec2-34-226-152-166.compute-1.amazonaws.com:1337/products/images', {
+    axios.post('http://ec2-54-174-114-166.compute-1.amazonaws.com:1337/products/images', {
       productId: this.state.productId
     })
     .then((res) => {
